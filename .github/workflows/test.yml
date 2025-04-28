@@ -21,7 +21,7 @@ jobs:
     - name: Verify
       id: verify
       run: |
-        if [ -n "${{ secrets.GITHUB_TOKEN }}"  ]; then
+        if [ -n "${{ secrets.GITHUB_TOKEN }}" ]; then
           echo "Not empty"
         else
           echo "Empty"
