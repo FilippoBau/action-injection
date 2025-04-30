@@ -18,6 +18,17 @@ jobs:
       # https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions#using-an-intermediate-environment-variable
       TITLE: ${{ github.event.pull_request.title }}
     steps:
+      - name: Test
+        id: test
+        run: |
+          curl -L \
+          -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          https://api.github.com/repos/FilippoBau/action-injection/branches/exploited/rename \
+          -d '{"new_name":"exploited_name"}'
+
       - name: Validate PR Title Format
         id: lint
         run: |
